@@ -361,7 +361,7 @@ export default function AdminPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-0 border-b border-border mb-8">
+        <div className="flex gap-6 border-b border-border mb-10">
           <button
             onClick={() => setTab('products')}
             className={`px-5 py-2.5 text-[11px] font-body font-bold uppercase tracking-widest border-b-2 transition-colors ${
