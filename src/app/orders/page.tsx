@@ -75,7 +75,7 @@ function OrdersContent() {
   }
 
   return (
-    <div className="min-h-screen bg-cream pt-16 lg:pt-[72px]">
+    <div className="min-h-screen bg-cream" style={{ paddingTop: 73 }}>
       {/* Success banner */}
       {isSuccess && (
         <div className="bg-forest text-cream px-5 py-4">
