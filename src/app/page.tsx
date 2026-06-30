@@ -3,7 +3,6 @@ import CategorySection from '@/components/CategorySection';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import NewsletterForm from '@/components/NewsletterForm';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight, Truck, ShieldCheck, RotateCcw, Headphones } from 'lucide-react';
 
 export default function HomePage() {
@@ -49,16 +48,22 @@ export default function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-5 lg:px-10 py-20 lg:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Image */}
+            {/* Video */}
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=85"
-                  alt="Craftsmanship"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source
+                    src="https://res.cloudinary.com/dfpf4deqc/video/upload/q_auto:low,f_mp4,vc_h264,w_800/v1782781062/IMG_8667_jbrujv.mp4"
+                    type="video/mp4"
+                  />
+                </video>
                 {/* Kente frame accent */}
                 <div className="absolute top-0 left-0 right-0 h-2 kente-bar" />
                 <div className="absolute bottom-0 left-0 right-0 h-2 kente-bar" />
@@ -98,6 +103,8 @@ export default function HomePage() {
                   { title: 'Ankara', sub: 'Bold print, bold identity' },
                   { title: 'Aso-oke', sub: 'Yoruba ceremonial weave' },
                   { title: 'Adire', sub: 'Indigo-dyed tradition' },
+                  { title: 'Lace', sub: 'Elegance for every occasion' },
+                  { title: 'Wedding Ankara', sub: 'Bridal African splendour' },
                 ].map((v) => (
                   <div key={v.title} className="flex items-start gap-3">
                     <div className="w-1 h-8 bg-ankara-orange shrink-0 mt-0.5" />
@@ -156,7 +163,7 @@ export default function HomePage() {
           </h2>
           <div className="kente-bar w-16 mx-auto mt-4 mb-10" />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
             {[
               { name: 'Ankara', origin: 'West Africa', color: '#D44820' },
               { name: 'Kente', origin: 'Ghana / Yoruba', color: '#E8B820' },
@@ -164,6 +171,8 @@ export default function HomePage() {
               { name: 'Adire', origin: 'Ogun State', color: '#1B2B7A' },
               { name: 'George', origin: 'Niger Delta', color: '#0A4030' },
               { name: 'Isi-agu', origin: 'Igboland', color: '#8B2010' },
+              { name: 'Lace', origin: 'West Africa', color: '#C9A227' },
+              { name: 'Wedding Ankara', origin: 'West Africa', color: '#7A2060' },
             ].map((fab) => (
               <div key={fab.name} className="group">
                 <div
