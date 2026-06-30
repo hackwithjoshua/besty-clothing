@@ -288,7 +288,7 @@ export default function CheckoutPage() {
                   {[
                     { field: 'fullName', label: 'Full Name',        placeholder: 'Amara Okafor',         type: 'text',  span: false },
                     { field: 'email',    label: 'Email Address',    placeholder: 'amara@example.com',     type: 'email', span: false },
-                    { field: 'phone',    label: 'Phone Number',     placeholder: '+234 800 000 0000',     type: 'tel',   span: true  },
+                    { field: 'phone',    label: 'Phone Number',     placeholder: '+234 9039456476',     type: 'tel',   span: true  },
                     { field: 'address',  label: 'Delivery Address', placeholder: '12 Adeola Odeku Street',type: 'text',  span: true  },
                     { field: 'city',     label: 'City',             placeholder: 'Lagos',                 type: 'text',  span: false },
                   ].map(({ field, label, placeholder, type, span }) => (
