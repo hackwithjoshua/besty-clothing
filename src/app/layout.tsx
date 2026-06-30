@@ -226,6 +226,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <head>
+        <link rel="icon" type="image/png" href="/besty-logo.png" />
+        <link rel="shortcut icon" type="image/png" href="/besty-logo.png" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="#1A0800" />
         <meta name="msapplication-TileColor" content="#1A0800" />
