@@ -437,28 +437,50 @@ export default function AdminPage() {
 
                   <div>
                     <label className="admin-label">Category *</label>
-                    <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="form-input">
+                    <select
+                      value={form.category}
+                      onChange={(e) => {
+                        const cat = e.target.value;
+                        setForm((prev) => ({
+                          ...prev,
+                          category: cat,
+                          sizes: cat === 'accessories' ? ['Free Size'] : (prev.sizes[0] === 'Free Size' ? [] : prev.sizes),
+                        }));
+                      }}
+                      className="form-input"
+                    >
                       {CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
                     </select>
                   </div>
 
                   <div>
-                    <label className="admin-label">Sizes * — select at least one</label>
-                    <div className="flex flex-wrap gap-2 mt-1">
-                      {SIZES.map((size) => (
-                        <button key={size} type="button"
-                          onClick={() => setForm((prev) => ({
-                            ...prev,
-                            sizes: prev.sizes.includes(size)
-                              ? prev.sizes.filter((s) => s !== size)
-                              : [...prev.sizes, size],
-                          }))}
-                          className={`size-btn text-xs ${form.sizes.includes(size) ? 'selected' : ''}`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
+                    <label className="admin-label">
+                      {form.category === 'accessories' ? 'Size' : 'Sizes * — select at least one'}
+                    </label>
+                    {form.category === 'accessories' ? (
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className="px-4 py-2 bg-ink text-kente-gold text-xs font-body font-bold uppercase tracking-widest border border-ink">
+                          Free Size
+                        </span>
+                        <span className="text-[10px] text-muted font-body">Auto-applied for accessories</span>
+                      </div>
+                    ) : (
+                      <div className="flex flex-wrap gap-2 mt-1">
+                        {SIZES.map((size) => (
+                          <button key={size} type="button"
+                            onClick={() => setForm((prev) => ({
+                              ...prev,
+                              sizes: prev.sizes.includes(size)
+                                ? prev.sizes.filter((s) => s !== size)
+                                : [...prev.sizes, size],
+                            }))}
+                            className={`size-btn text-xs ${form.sizes.includes(size) ? 'selected' : ''}`}
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div>

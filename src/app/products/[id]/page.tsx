@@ -57,7 +57,13 @@ export default function ProductDetailPage() {
     async function fetchProduct() {
       try {
         const snap = await getDoc(doc(db, 'products', id));
-        if (snap.exists()) setProduct({ id: snap.id, ...snap.data() } as Product);
+        if (snap.exists()) {
+          const p = { id: snap.id, ...snap.data() } as Product;
+          setProduct(p);
+          if (p.category === 'accessories' || p.sizes?.[0] === 'Free Size') {
+            setSelectedSize('Free Size');
+          }
+        }
       } catch { /* noop */ } finally { setLoading(false); }
     }
     fetchProduct();
@@ -280,32 +286,41 @@ export default function ProductDetailPage() {
             <div className="h-px bg-border mb-7" />
 
             {/* Size */}
-            <div id="size-section" className={`mb-7 transition-all ${shakeSize ? 'animate-shake' : ''}`}>
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-[10px] font-body font-bold uppercase tracking-[0.35em] text-ink">
-                  Size
-                  {!selectedSize && <span className="text-ankara-orange font-normal ml-2 normal-case tracking-normal">— choose one</span>}
-                </p>
-                <button onClick={() => setShowSizeGuide(true)} className="text-[10px] text-ankara-orange font-body uppercase tracking-widest underline underline-offset-2">
-                  Size Guide
-                </button>
+            {product.category === 'accessories' || product.sizes?.[0] === 'Free Size' ? (
+              <div className="mb-7">
+                <p className="text-[10px] font-body font-bold uppercase tracking-[0.35em] text-ink mb-3">Size</p>
+                <span className="inline-block px-5 py-2.5 bg-ink text-kente-gold text-[11px] font-body font-bold uppercase tracking-widest border border-ink">
+                  Free Size
+                </span>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`min-w-[44px] h-10 px-3 text-[11px] font-body font-bold uppercase tracking-wider border transition-all duration-150 ${
-                      selectedSize === size
-                        ? 'bg-ink text-cream border-ink'
-                        : 'text-muted border-border hover:border-ink hover:text-ink'
-                    }`}
-                  >
-                    {size}
+            ) : (
+              <div id="size-section" className={`mb-7 transition-all ${shakeSize ? 'animate-shake' : ''}`}>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-[10px] font-body font-bold uppercase tracking-[0.35em] text-ink">
+                    Size
+                    {!selectedSize && <span className="text-ankara-orange font-normal ml-2 normal-case tracking-normal">— choose one</span>}
+                  </p>
+                  <button onClick={() => setShowSizeGuide(true)} className="text-[10px] text-ankara-orange font-body uppercase tracking-widest underline underline-offset-2">
+                    Size Guide
                   </button>
-                ))}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {product.sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`min-w-[44px] h-10 px-3 text-[11px] font-body font-bold uppercase tracking-wider border transition-all duration-150 ${
+                        selectedSize === size
+                          ? 'bg-ink text-cream border-ink'
+                          : 'text-muted border-border hover:border-ink hover:text-ink'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Color */}
             <div id="color-section" className={`mb-8 transition-all ${shakeColor ? 'animate-shake' : ''}`}>
