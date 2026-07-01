@@ -76,12 +76,19 @@ export default function FeaturedProducts() {
           </div>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {products.map((p) => <ProductCard key={p.id} product={p} />)}
+            {products.map((p, i) => (
+              <div key={p.id} className={i >= 2 ? 'hidden lg:block' : ''}>
+                <ProductCard product={p} />
+              </div>
+            ))}
           </div>
         )}
 
-        <div className="mt-10 text-center sm:hidden">
-          <Link href="/products" className="btn-outline inline-flex">View All Collections</Link>
+        <div className="mt-10 text-center">
+          <Link href="/products" className="btn-outline inline-flex items-center gap-2 group">
+            View All Collections
+            <ArrowRight size={13} strokeWidth={2} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>
