@@ -152,14 +152,14 @@ export default function HeroSection() {
                 </Link>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center gap-8">
                 {[
-                  { n: '500+', label: 'Designs' },
-                  { n: '12K+', label: 'Customers' },
+                  { n: '100+', label: 'Designs' },
+                  { n: '500+', label: 'Customers' },
                   { n: '100%', label: 'Authentic' },
                 ].map((s, i) => (
                   <div key={s.label} className="flex items-center">
-                    {i > 0 && <div className="w-px h-8 bg-cream/10 mx-5" />}
+                    {i > 0 && <div className="w-px h-8 bg-cream/10 mr-8" />}
                     <div>
                       <p className="font-heading text-[1.6rem] font-bold text-kente-gold leading-none">{s.n}</p>
                       <p className="text-[10px] text-cream/35 uppercase tracking-widest font-body mt-1">{s.label}</p>

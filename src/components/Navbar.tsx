@@ -29,7 +29,8 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/products', label: 'Collections' },
-    { href: '/products?category=dress', label: 'Dresses' },
+    { href: '/products?category=women-unique-pieces', label: 'Women' },
+    { href: '/products?category=men-unique-styles', label: 'Men' },
     { href: '/products?category=suit', label: 'Suits' },
     { href: '/products?category=accessories', label: 'Accessories' },
   ];

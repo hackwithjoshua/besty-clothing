@@ -79,153 +79,80 @@ function LoginForm() {
   ══════════════════════════════════════ */
   if (isAdminLogin) {
     return (
-      <div className="min-h-screen flex" style={{ backgroundColor: '#0A0600' }}>
+      <div className="min-h-screen flex items-center justify-center px-4 py-12" style={{ backgroundColor: '#0C0800' }}>
+        <div className="absolute top-0 left-0 right-0 h-[5px]" style={{ backgroundImage: KENTE_H }} />
+        <div className="absolute bottom-0 left-0 right-0 h-[5px]" style={{ backgroundImage: KENTE_H }} />
 
-        {/* ── LEFT PANEL ── */}
-        <div className="hidden lg:flex w-[45%] relative flex-col justify-between py-16 px-14 overflow-hidden">
-
-          {/* Warm dark background with texture */}
-          <div className="absolute inset-0" style={{ backgroundColor: '#0E0900' }} />
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg,   transparent 0, transparent 48px, rgba(232,184,32,0.12) 48px, rgba(232,184,32,0.12) 49px),
-              repeating-linear-gradient(90deg,  transparent 0, transparent 48px, rgba(212,72,32,0.08) 48px, rgba(212,72,32,0.08) 49px)
-            `
-          }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/60" />
-
-          {/* Kente strips */}
-          <div className="absolute top-0 left-0 bottom-0 w-[8px]" style={{ backgroundImage: KENTE_V }} />
-          <div className="absolute top-0 right-0 bottom-0 w-[8px]" style={{ backgroundImage: KENTE_V }} />
-
+        <div className="w-full max-w-md">
           {/* Logo */}
-          <div className="relative z-10">
+          <div className="text-center mb-8">
             <Link href="/">
-              <Image src="/besty-logo.png" alt="Besty Clothing" height={48} width={150} className="object-contain brightness-0 invert mb-4" />
-              <h1 className="font-heading text-6xl font-bold text-cream leading-none">Admin</h1>
-              <h1 className="font-heading text-6xl font-light text-cream/30 leading-none">Panel</h1>
+              <Image src="/besty-logo.png" alt="Besty Clothing" height={44} width={140} className="object-contain brightness-0 invert mx-auto" />
             </Link>
+            <div className="h-[4px] mt-5 w-16 mx-auto" style={{ backgroundImage: KENTE_H }} />
           </div>
 
-          {/* Middle content */}
-          <div className="relative z-10">
-            <div className="h-[6px] mb-10" style={{ backgroundImage: KENTE_H }} />
-            <p className="font-heading text-3xl font-light text-cream/70 italic leading-relaxed mb-6">
-              "Your store.<br/>Your culture.<br/>Your control."
-            </p>
-            <div className="flex items-center gap-3">
-              <ShieldCheck size={16} strokeWidth={1.5} className="text-kente-gold shrink-0" />
-              <p className="text-xs font-body text-cream/35 uppercase tracking-widest">Authorised access only</p>
+          {/* Card */}
+          <div className="bg-[#0E0900] border border-cream/[0.07] p-8">
+            <div className="flex items-center gap-2 mb-1">
+              <ShieldCheck size={14} strokeWidth={1.5} className="text-kente-gold" />
+              <p className="text-[10px] font-body font-bold uppercase tracking-[0.4em] text-ankara-orange">Secure Sign In</p>
             </div>
-            <div className="h-[6px] mt-10" style={{ backgroundImage: KENTE_H }} />
-          </div>
+            <h2 className="font-heading text-3xl font-light text-cream mb-6">Admin Panel</h2>
 
-          {/* Footer */}
-          <div className="relative z-10">
-            <p className="text-[10px] font-body text-cream/20 uppercase tracking-widest">Lagos · Nigeria · 2025</p>
-          </div>
-        </div>
-
-        {/* ── RIGHT PANEL — form ── */}
-        <div className="flex-1 relative flex flex-col justify-center overflow-hidden" style={{ backgroundColor: '#0C0800' }}>
-
-          {/* Kente frame */}
-          <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ backgroundImage: KENTE_H }} />
-          <div className="absolute bottom-0 left-0 right-0 h-[6px]" style={{ backgroundImage: KENTE_H }} />
-          <div className="absolute top-0 right-0 bottom-0 w-[8px]" style={{ backgroundImage: KENTE_V }} />
-
-          {/* Form content */}
-          <div className="px-10 py-16 lg:px-16 xl:px-20 w-full max-w-[560px] mx-auto">
-
-            {/* Mobile logo */}
-            <div className="lg:hidden mb-12">
-              <Image src="/besty-logo.png" alt="Besty Clothing" height={40} width={130} className="object-contain brightness-0 invert mb-3" />
-              <h1 className="font-heading text-4xl font-bold text-cream">Admin Panel</h1>
-            </div>
-
-            {/* Heading */}
-            <p className="text-xs font-body font-bold uppercase tracking-[0.45em] text-ankara-orange mb-4">
-              Secure Sign In
-            </p>
-            <h2 className="font-heading font-light text-cream leading-[1.05] mb-3" style={{ fontSize: 'clamp(2.4rem, 4vw, 3.5rem)' }}>
-              Welcome back,<br />
-              <span className="text-kente-gold italic">Admin.</span>
-            </h2>
-            <p className="text-sm font-body text-cream/35 mb-12 leading-relaxed">
-              Enter your authorised credentials to access<br className="hidden lg:block" /> the Besty Clothing dashboard.
-            </p>
-
-            {/* Form */}
-            <form onSubmit={handleEmailLogin} className="space-y-7">
-
-              {/* Email */}
+            <form onSubmit={handleEmailLogin} className="space-y-5">
               <div>
-                <label className="block text-xs font-body font-semibold uppercase tracking-[0.3em] text-cream/50 mb-3">
-                  Email Address
-                </label>
+                <label className="block text-[10px] font-body font-semibold uppercase tracking-[0.3em] text-cream/40 mb-2">Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
+                  placeholder="admin@bestyclothing.shop"
                   required
-                  className="w-full bg-[#0A0600] border-0 border-b-2 border-cream/15 focus:border-kente-gold text-cream text-lg placeholder:text-cream/15 px-0 py-4 font-body outline-none transition-colors"
-                  style={{ borderBottom: '2px solid rgba(255,255,255,0.12)' }}
-                  onFocus={e => (e.target.style.borderBottomColor = '#E8B820')}
-                  onBlur={e => (e.target.style.borderBottomColor = 'rgba(255,255,255,0.12)')}
+                  className="w-full bg-[#0A0600] border border-cream/10 focus:border-kente-gold text-cream text-sm placeholder:text-cream/20 px-4 py-3 font-body outline-none transition-colors"
                 />
               </div>
 
-              {/* Password */}
               <div>
-                <label className="block text-xs font-body font-semibold uppercase tracking-[0.3em] text-cream/50 mb-3">
-                  Password
-                </label>
+                <label className="block text-[10px] font-body font-semibold uppercase tracking-[0.3em] text-cream/40 mb-2">Password</label>
                 <div className="relative">
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
+                    placeholder="Your password"
                     required
                     minLength={6}
-                    className="w-full bg-[#0A0600] text-cream text-lg placeholder:text-cream/15 px-0 py-4 pr-12 font-body outline-none transition-colors"
-                    style={{ borderBottom: '2px solid rgba(255,255,255,0.12)' }}
-                    onFocus={e => (e.target.style.borderBottomColor = '#E8B820')}
-                    onBlur={e => (e.target.style.borderBottomColor = 'rgba(255,255,255,0.12)')}
+                    className="w-full bg-[#0A0600] border border-cream/10 focus:border-kente-gold text-cream text-sm placeholder:text-cream/20 px-4 py-3 pr-11 font-body outline-none transition-colors"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 text-cream/30 hover:text-kente-gold transition-colors p-2"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-cream/30 hover:text-kente-gold transition-colors"
                   >
-                    {showPassword ? <EyeOff size={20} strokeWidth={1.5} /> : <Eye size={20} strokeWidth={1.5} />}
+                    {showPassword ? <EyeOff size={17} strokeWidth={1.5} /> : <Eye size={17} strokeWidth={1.5} />}
                   </button>
                 </div>
               </div>
 
-              {/* Submit */}
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-kente-gold hover:bg-amber-400 active:bg-amber-500 text-ink font-body font-bold text-sm uppercase tracking-[0.4em] py-5 transition-colors disabled:opacity-50 flex items-center justify-center gap-3"
-                >
-                  {loading
-                    ? <><Loader2 size={16} className="animate-spin" /> Verifying…</>
-                    : <><ShieldCheck size={16} strokeWidth={2} /> Access Dashboard</>
-                  }
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-kente-gold hover:bg-amber-400 text-ink font-body font-bold text-xs uppercase tracking-[0.4em] py-4 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
+              >
+                {loading
+                  ? <><Loader2 size={14} className="animate-spin" /> Verifying…</>
+                  : <><ShieldCheck size={14} strokeWidth={2} /> Access Dashboard</>
+                }
+              </button>
             </form>
+          </div>
 
-            {/* Back */}
-            <div className="mt-12 pt-8 border-t border-cream/[0.06]">
-              <Link href="/" className="inline-flex items-center gap-2 text-xs font-body text-cream/25 hover:text-cream/50 transition-colors uppercase tracking-[0.3em]">
-                <ArrowLeft size={13} strokeWidth={2} />
-                Back to store
-              </Link>
-            </div>
+          <div className="mt-6 text-center">
+            <Link href="/" className="inline-flex items-center gap-2 text-[11px] font-body text-cream/25 hover:text-cream/50 transition-colors uppercase tracking-widest">
+              <ArrowLeft size={12} strokeWidth={2} />
+              Back to store
+            </Link>
           </div>
         </div>
       </div>

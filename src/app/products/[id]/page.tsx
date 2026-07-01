@@ -47,6 +47,7 @@ export default function ProductDetailPage() {
   const [added, setAdded]               = useState(false);
   const [shakeSize, setShakeSize]       = useState(false);
   const [shakeColor, setShakeColor]     = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
 
   const imgRef    = useRef<HTMLDivElement>(null);
   const [zoom, setZoom]       = useState(false);
@@ -107,6 +108,7 @@ export default function ProductDetailPage() {
   const currentImage = images[activeImage];
 
   return (
+    <>
     <div className="min-h-screen bg-cream" style={{ paddingTop: 73 }}>
 
       {/* Kente top accent */}
@@ -139,7 +141,7 @@ export default function ProductDetailPage() {
             {/* Main image with zoom loupe */}
             <div
               ref={imgRef}
-              className="relative aspect-[4/5] bg-parchment overflow-hidden cursor-crosshair select-none"
+              className="relative aspect-[4/5] bg-parchment overflow-hidden cursor-default lg:cursor-crosshair select-none"
               onMouseEnter={() => setZoom(true)}
               onMouseLeave={() => setZoom(false)}
               onMouseMove={handleMouseMove}
@@ -185,9 +187,9 @@ export default function ProductDetailPage() {
                     </div>
                   )}
 
-                  {/* Zoom hint */}
+                  {/* Zoom hint — desktop only */}
                   {!zoom && (
-                    <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 bg-ink/55 text-cream text-[10px] font-body uppercase tracking-widest px-3 py-2 backdrop-blur-sm">
+                    <div className="absolute bottom-4 right-4 z-10 hidden lg:flex items-center gap-1.5 bg-ink/55 text-cream text-[10px] font-body uppercase tracking-widest px-3 py-2 backdrop-blur-sm">
                       <ZoomIn size={11} strokeWidth={1.5} />
                       Hover to zoom
                     </div>
@@ -284,7 +286,7 @@ export default function ProductDetailPage() {
                   Size
                   {!selectedSize && <span className="text-ankara-orange font-normal ml-2 normal-case tracking-normal">— choose one</span>}
                 </p>
-                <button className="text-[10px] text-ankara-orange font-body uppercase tracking-widest underline underline-offset-2">
+                <button onClick={() => setShowSizeGuide(true)} className="text-[10px] text-ankara-orange font-body uppercase tracking-widest underline underline-offset-2">
                   Size Guide
                 </button>
               </div>
@@ -377,5 +379,70 @@ export default function ProductDetailPage() {
         </div>
       </div>
     </div>
+
+    {/* Size Guide Modal */}
+    {showSizeGuide && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center px-4" onClick={() => setShowSizeGuide(false)}>
+        <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" />
+        <div className="relative bg-cream w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-ink px-6 py-4 flex items-center justify-between">
+            <div>
+              <p className="text-[9px] font-body font-bold uppercase tracking-[0.4em] text-kente-gold mb-0.5">Besty Clothing</p>
+              <h3 className="font-heading text-cream text-xl font-light">Size Guide</h3>
+            </div>
+            <button onClick={() => setShowSizeGuide(false)} className="text-cream/50 hover:text-cream text-2xl leading-none">&times;</button>
+          </div>
+          <div style={{ height: 4, backgroundImage: KENTE_H }} />
+
+          <div className="p-6">
+            <p className="text-xs font-body text-muted mb-5">All measurements are in centimetres (cm). For the best fit, measure over your undergarments.</p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm font-body border-collapse">
+                <thead>
+                  <tr className="bg-ink text-cream">
+                    <th className="px-3 py-2.5 text-left text-[10px] uppercase tracking-widest font-bold">Size</th>
+                    <th className="px-3 py-2.5 text-center text-[10px] uppercase tracking-widest font-bold">Bust</th>
+                    <th className="px-3 py-2.5 text-center text-[10px] uppercase tracking-widest font-bold">Waist</th>
+                    <th className="px-3 py-2.5 text-center text-[10px] uppercase tracking-widest font-bold">Hips</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { size: 'XS', bust: '76–81', waist: '61–66', hips: '84–89' },
+                    { size: 'S',  bust: '84–89', waist: '66–71', hips: '91–96' },
+                    { size: 'M',  bust: '91–96', waist: '71–76', hips: '99–104' },
+                    { size: 'L',  bust: '99–104', waist: '79–84', hips: '107–112' },
+                    { size: 'XL', bust: '107–112', waist: '87–92', hips: '114–119' },
+                    { size: 'XXL', bust: '114–119', waist: '94–99', hips: '122–127' },
+                  ].map((row, i) => (
+                    <tr key={row.size} className={i % 2 === 0 ? 'bg-white' : 'bg-parchment'}>
+                      <td className="px-3 py-2.5 font-bold text-ink">{row.size}</td>
+                      <td className="px-3 py-2.5 text-center text-muted">{row.bust}</td>
+                      <td className="px-3 py-2.5 text-center text-muted">{row.waist}</td>
+                      <td className="px-3 py-2.5 text-center text-muted">{row.hips}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-5 bg-parchment p-4 border-l-2 border-ankara-orange">
+              <p className="text-[11px] font-body font-bold text-ink uppercase tracking-widest mb-2">How to Measure</p>
+              <ul className="text-xs font-body text-muted space-y-1.5">
+                <li><span className="font-semibold text-ink">Bust —</span> measure around the fullest part of your chest</li>
+                <li><span className="font-semibold text-ink">Waist —</span> measure around your natural waistline</li>
+                <li><span className="font-semibold text-ink">Hips —</span> measure around the fullest part of your hips</li>
+              </ul>
+            </div>
+
+            <p className="text-[10px] text-muted font-body mt-4 text-center">
+              Need help? Contact us at <span className="text-ankara-orange">hello@bestyclothing.shop</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

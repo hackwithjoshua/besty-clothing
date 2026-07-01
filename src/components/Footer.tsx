@@ -65,10 +65,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 ['All Collections', '/products'],
-                ['Dresses', '/products?category=dress'],
-                ['Tops & Blouses', '/products?category=top'],
-                ['Skirts', '/products?category=skirt'],
-                ['Wrappers', '/products?category=wrapper'],
+                ['Women Unique Pieces', '/products?category=women-unique-pieces'],
+                ['Men Unique Styles', '/products?category=men-unique-styles'],
                 ['Suits & Agbada', '/products?category=suit'],
                 ['Accessories', '/products?category=accessories'],
               ].map(([label, href]) => (
@@ -89,11 +87,11 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 ['My Orders', '/orders'],
-                ['Size Guide', '#'],
-                ['Care Instructions', '#'],
-                ['Returns & Exchanges', '#'],
-                ['Shipping Policy', '#'],
-                ['Privacy Policy', '#'],
+                ['Size Guide', '/size-guide'],
+                ['Care Instructions', '/care-instructions'],
+                ['Returns & Exchanges', '/returns'],
+                ['Shipping Policy', '/shipping-policy'],
+                ['Privacy Policy', '/privacy-policy'],
               ].map(([label, href]) => (
                 <li key={label}>
                   <Link href={href} className="text-[13px] font-body text-cream/50 hover:text-cream transition-colors">

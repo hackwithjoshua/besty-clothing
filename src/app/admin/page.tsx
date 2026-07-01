@@ -19,7 +19,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { seedProducts } from '@/lib/seedProducts';
 
-const CATEGORIES = ['dress', 'top', 'skirt', 'wrapper', 'suit', 'accessories'];
+const CATEGORIES = [
+  { value: 'women-unique-pieces', label: 'Women Unique Pieces' },
+  { value: 'men-unique-styles',   label: 'Men Unique Styles' },
+  { value: 'suit',                label: 'Suits' },
+  { value: 'accessories',         label: 'Accessories' },
+];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 const IMAGE_LABELS = ['Front View', 'Back View', 'Detail Shot', 'Full Look', 'Close-up', 'Side View'];
 
@@ -65,7 +70,7 @@ const emptyForm = {
   name: '',
   description: '',
   price: '',
-  category: 'dress',
+  category: 'women-unique-pieces',
   sizes: [] as string[],
   colors: '',
   images: [''] as string[],
@@ -433,7 +438,7 @@ export default function AdminPage() {
                   <div>
                     <label className="admin-label">Category *</label>
                     <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="form-input">
-                      {CATEGORIES.map((c) => <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
+                      {CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
                     </select>
                   </div>
 

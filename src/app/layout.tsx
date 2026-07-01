@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -6,6 +6,7 @@ import { CartProvider } from '@/contexts/CartContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -20,6 +21,14 @@ const dmSans = DM_Sans({
   variable: '--font-dm-sans',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: '#0C0800',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.bestyclothing.shop'),
@@ -260,6 +269,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="flex-1">{children}</main>
             <Footer />
             <CartDrawer />
+            <WhatsAppButton />
             <Toaster
               position="top-right"
               toastOptions={{

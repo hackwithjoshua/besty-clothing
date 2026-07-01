@@ -104,7 +104,7 @@ export default function HomePage() {
                   { title: 'Aso-oke', sub: 'Yoruba ceremonial weave' },
                   { title: 'Adire', sub: 'Indigo-dyed tradition' },
                   { title: 'Lace', sub: 'Elegance for every occasion' },
-                  { title: 'Wedding Ankara', sub: 'Bridal African splendour' },
+                  { title: 'Wedding', sub: 'Bridal African splendour' },
                 ].map((v) => (
                   <div key={v.title} className="flex items-start gap-3">
                     <div className="w-1 h-8 bg-ankara-orange shrink-0 mt-0.5" />
@@ -172,7 +172,7 @@ export default function HomePage() {
               { name: 'George', origin: 'Niger Delta', color: '#0A4030' },
               { name: 'Isi-agu', origin: 'Igboland', color: '#8B2010' },
               { name: 'Lace', origin: 'West Africa', color: '#C9A227' },
-              { name: 'Wedding Ankara', origin: 'West Africa', color: '#7A2060' },
+              { name: 'Wedding', origin: 'West Africa', color: '#7A2060' },
             ].map((fab) => (
               <div key={fab.name} className="group">
                 <div
