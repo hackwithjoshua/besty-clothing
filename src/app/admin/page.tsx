@@ -323,7 +323,7 @@ export default function AdminPage() {
       <div className="max-w-6xl mx-auto px-5 lg:px-8 py-8 lg:py-10">
 
         {/* Page header */}
-        <div className="flex items-start justify-between mb-6 gap-4">
+        <div className="flex flex-wrap items-start justify-between mb-6 gap-4">
           <div>
             <p className="text-[10px] font-body font-bold uppercase tracking-[0.4em] text-ankara-orange mb-1">Admin Panel</p>
             <h1 className="font-heading text-3xl font-light text-ink">
@@ -336,7 +336,7 @@ export default function AdminPage() {
             </p>
           </div>
           {tab === 'products' && (
-            <div className="flex items-center gap-2 shrink-0 mt-1">
+            <div className="flex flex-wrap items-center gap-2 mt-1">
               <button
                 onClick={handleSeed}
                 disabled={seeding}
@@ -357,7 +357,7 @@ export default function AdminPage() {
           {tab === 'orders' && (
             <button
               onClick={() => { setOrdersFetched(false); fetchOrders(); }}
-              className="flex items-center gap-2 border border-border text-muted hover:border-kente-gold hover:text-kente-gold text-[11px] font-body font-bold uppercase tracking-widest px-3 py-2.5 transition-colors shrink-0 mt-1"
+              className="flex items-center gap-2 border border-border text-muted hover:border-kente-gold hover:text-kente-gold text-[11px] font-body font-bold uppercase tracking-widest px-3 py-2.5 transition-colors mt-1"
             >
               {ordersFetching ? <Loader2 size={13} className="animate-spin" /> : <ShoppingBag size={13} strokeWidth={1.5} />}
               Refresh
@@ -366,10 +366,10 @@ export default function AdminPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-6 border-b border-border mb-10">
+        <div className="flex gap-2 sm:gap-6 border-b border-border mb-8">
           <button
             onClick={() => setTab('products')}
-            className={`px-5 py-2.5 text-[11px] font-body font-bold uppercase tracking-widest border-b-2 transition-colors ${
+            className={`px-3 sm:px-5 py-2.5 text-[11px] font-body font-bold uppercase tracking-widest border-b-2 transition-colors ${
               tab === 'products'
                 ? 'border-kente-gold text-ink'
                 : 'border-transparent text-muted hover:text-ink'
@@ -379,7 +379,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setTab('orders')}
-            className={`px-5 py-2.5 text-[11px] font-body font-bold uppercase tracking-widest border-b-2 transition-colors ${
+            className={`px-3 sm:px-5 py-2.5 text-[11px] font-body font-bold uppercase tracking-widest border-b-2 transition-colors ${
               tab === 'orders'
                 ? 'border-kente-gold text-ink'
                 : 'border-transparent text-muted hover:text-ink'
@@ -554,14 +554,14 @@ export default function AdminPage() {
                   <table className="w-full text-sm font-body">
                     <thead>
                       <tr className="border-b border-border text-left text-[10px] uppercase tracking-widest text-muted">
-                        <th className="pb-3 pr-4">Product</th>
-                        <th className="pb-3 pr-4">Category</th>
-                        <th className="pb-3 pr-4">Price</th>
-                        <th className="pb-3 pr-4">Sizes</th>
-                        <th className="pb-3 pr-4">Colors</th>
-                        <th className="pb-3 pr-4">Images</th>
-                        <th className="pb-3 pr-4">Status</th>
-                        <th className="pb-3" />
+                        <th className="pb-3 pr-4 min-w-[160px]">Product</th>
+                        <th className="pb-3 pr-4 min-w-[130px]">Category</th>
+                        <th className="pb-3 pr-4 min-w-[90px]">Price</th>
+                        <th className="pb-3 pr-4 min-w-[100px]">Sizes</th>
+                        <th className="pb-3 pr-4 min-w-[120px]">Colors</th>
+                        <th className="pb-3 pr-4 min-w-[90px]">Images</th>
+                        <th className="pb-3 pr-4 min-w-[100px]">Status</th>
+                        <th className="pb-3 min-w-[64px]" />
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
@@ -606,17 +606,17 @@ export default function AdminPage() {
                             </span>
                           </td>
                           <td className="py-3">
-                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="flex items-center gap-1">
                               <button
                                 onClick={() => openEdit(p)}
-                                className="p-1.5 text-muted-light hover:text-ankara-orange transition-colors"
+                                className="p-1.5 text-muted hover:text-ankara-orange transition-colors border border-border hover:border-ankara-orange"
                                 aria-label="Edit"
                               >
                                 <Pencil size={14} strokeWidth={1.5} />
                               </button>
                               <button
                                 onClick={() => handleDelete(p.id, p.name)}
-                                className="p-1.5 text-muted-light hover:text-ankara-red transition-colors"
+                                className="p-1.5 text-muted hover:text-ankara-red transition-colors border border-border hover:border-ankara-red"
                                 aria-label="Delete"
                               >
                                 <Trash2 size={14} strokeWidth={1.5} />
